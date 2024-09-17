@@ -5,8 +5,7 @@
     "outDir": "./dist",
     "allowJs": false,
     "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
-    "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
-    "noEmit": true,                                   /* Disable emitting files from a compilation. */
+    "emitDeclarationOnly": false,                      /* Only output d.ts files and not JavaScript files. */
     "removeComments": true,                           /* Disable emitting comments. */
     "noEmitOnError": true,                            /* Disable emitting files if any type checking errors are reported. */
     "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */
