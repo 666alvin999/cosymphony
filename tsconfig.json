@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
     "target": "es2023",
-    "module": "commonjs",
+    "module": "nodenext",
+    "moduleResolution": "NodeNext",
     "outDir": "./dist",
     "allowJs": false,
     "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+    "noEmit": false,
     "emitDeclarationOnly": false,                      /* Only output d.ts files and not JavaScript files. */
     "removeComments": true,                           /* Disable emitting comments. */
     "noEmitOnError": true,                            /* Disable emitting files if any type checking errors are reported. */
