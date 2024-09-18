@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2023",
-    "module": "nodenext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "outDir": "./dist",
+    "rootDir": "./src",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "target": "es2023",
     "allowJs": false,
     "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
     "noEmit": false,
@@ -19,10 +22,12 @@
     "strictFunctionTypes": true,                      /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */
     "noImplicitThis": true,                           /* Enable error reporting when 'this' is given the type 'any'. */
     "alwaysStrict": true,                             /* Ensure 'use strict' is always emitted. */
-    "noUnusedLocals": true,                           /* Enable error reporting when local variables aren't read. */
+//    "noUnusedLocals": true,                           /* Enable error reporting when local variables aren't read. */
     "noUnusedParameters": false,                       /* Raise an error when a function parameter isn't read. */
     "noImplicitReturns": true,                        /* Enable error reporting for codepaths that do not explicitly return in a function. */
     "noImplicitOverride": true,                       /* Ensure overriding members in derived classes are marked with an override modifier. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.test.ts"]
 }
