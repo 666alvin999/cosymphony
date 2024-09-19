@@ -75,7 +75,7 @@ export class PlanetMusicMapper {
 	}
 
 	private makeMinorMusicRange(musicRange: MusicRange): Array<string> {
-		const minorScalePattern = ["W", "W", "H", "W", "W", "W", "H"];
+		const minorScalePattern = ["W", "H", "W", "W", "H", "W", "W"];
 		return this.makeMusicRangeFollowPattern(musicRange, minorScalePattern);
 	}
 
