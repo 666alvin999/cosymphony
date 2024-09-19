@@ -5,6 +5,9 @@ import {MusicRange} from "../../domain/entity/MusicRange.js";
 
 export class PlanetMusicMapper {
 
+  private readonly MIN_BPM = 90;
+  private readonly MAX_BPM = 240;
+
   public mapToModel(planet: Planet): PlanetMusic {
     const tempo = this.calculateTempo(planet.revolutionSpeedInDays);
     const synthToUse = this.calculateSynthToUse(planet.mass.exponent);
@@ -13,16 +16,13 @@ export class PlanetMusicMapper {
   }
 
   private calculateTempo(revolutionSpeedInDays: number): number {
-    const minBPM = 90;
-    const maxBPM = 240;
-
     const earthRevolutionSpeedInDays = 365;
 
     // Utilisation d'un facteur logarithmique pour maintenir une échelle musicale
-    const tempoInBpm = minBPM + (Math.log(revolutionSpeedInDays) / Math.log(earthRevolutionSpeedInDays)) * (maxBPM - minBPM);
+    const tempoInBpm = this.MIN_BPM + (Math.log(revolutionSpeedInDays) / Math.log(earthRevolutionSpeedInDays)) * (this.MAX_BPM - this.MIN_BPM);
 
     // Limiter le BPM pour qu'il reste entre 90 et 240 BPM
-    return Math.min(Math.max(Math.round(tempoInBpm), minBPM), maxBPM);
+    return Math.min(Math.max(Math.round(tempoInBpm), this.MIN_BPM), this.MAX_BPM);
   }
 
   private calculateSynthToUse(exponent: number): Synth {
@@ -46,10 +46,11 @@ export class PlanetMusicMapper {
     // return the music range based on the mass
     for (const key in MusicRange) {
       const range = MusicRange[key];
+
       if (mass >= range.interval[0] && mass < range.interval[1]) {
         return range.musicRange;
       }
     }
-    throw new Error(`No music range found for mass: ${mass}`);
+    return MusicRange.B.musicRange;
   }
 }
