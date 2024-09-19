@@ -1,10 +1,10 @@
 export enum Synth {
 
-	SimpleSynth,
-	MonoSynth,
-	FMSynth,
-	AMSynth,
-	PolySynth,
-	MetalSynth
+	SimpleSynth = "Synth",
+	MonoSynth = "MonoSynth",
+	FMSynth = "FMSynth",
+	AMSynth = "AMSynth",
+	PolySynth = "PolySynth",
+	MetalSynth = "MetalSynth"
 
 }
