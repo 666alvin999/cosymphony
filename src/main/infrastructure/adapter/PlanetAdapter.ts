@@ -15,7 +15,7 @@ export class PlanetAdapter implements PlanetPort {
 
 	public async getPlanetMusic(planetName: string): Promise<PlanetMusic> {
 		const planet = await this.planetDao.getPlanetByName(planetName);
-		return this.planetMusicMapper.mapToModel(planet)
+		return this.planetMusicMapper.mapToDomain(planet)
 	}
 
 }
