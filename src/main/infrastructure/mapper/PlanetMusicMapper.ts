@@ -7,11 +7,12 @@ export class PlanetMusicMapper {
 
 	private readonly MIN_BPM = 90;
 	private readonly MAX_BPM = 240;
+	private readonly notes = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B']
 
-	public mapToModel(planet: Planet): PlanetMusic {
+	public mapToDomain(planet: Planet): PlanetMusic {
 		const tempo = this.calculateTempo(planet.revolutionSpeedInDays);
 		const synthToUse = this.calculateSynthToUse(planet.mass.exponent);
-		const musicRange = this.calculateMusicRange(planet.mass.value);
+		const musicRange = this.calculateMusicRange(planet.mass.value, planet.type);
 
 		return new PlanetMusic(tempo, musicRange, synthToUse);
 	}
@@ -43,15 +44,73 @@ export class PlanetMusicMapper {
 		}
 	}
 
-	private calculateMusicRange(mass: number): Array<string> {
+	private calculateMusicRange(mass: number, type: string): Array<string> {
 		// return the music range based on the mass
 		for (const key in MusicRange) {
 			const range = MusicRange[key];
 
 			if (mass >= range.interval[0] && mass < range.interval[1]) {
-				return range.musicRange;
+				return this.modifyMusicRangeBasedOnType(range, type);
 			}
 		}
-		return MusicRange.B.musicRange;
+
+		return this.modifyMusicRangeBasedOnType(MusicRange.B, type);
+	}
+
+	private modifyMusicRangeBasedOnType(musicRange: MusicRange, type: string): Array<string> {
+		let modifiedRange;
+		if (type === "Moon" || type === "Planet") {
+			modifiedRange = this.makeMajorMusicRange(musicRange);
+		} else {
+			modifiedRange = this.makeMinorMusicRange(musicRange);
+		}
+
+		// return modifiedRange
+		return this.refineAlteratedNotes(modifiedRange);
+	}
+
+	private makeMajorMusicRange(musicRange: MusicRange): Array<string> {
+		const majorScalePattern = ["W", "W", "H", "W", "W", "W", "H"];
+		return this.makeMusicRangeFollowPattern(musicRange, majorScalePattern);
+	}
+
+	private makeMinorMusicRange(musicRange: MusicRange): Array<string> {
+		const minorScalePattern = ["W", "H", "W", "W", "H", "W", "W"];
+		return this.makeMusicRangeFollowPattern(musicRange, minorScalePattern);
+	}
+
+	private makeMusicRangeFollowPattern(musicRange: MusicRange, minorScalePattern: string[]) {
+		const result = new Array<string>()
+
+		let index: number = this.notes.findIndex(note => note == musicRange.key);
+
+		for (const step of minorScalePattern) {
+			const increment = step === "W" ? 2 : 1;
+			index = index + increment < this.notes.length ? index + increment : index + increment - this.notes.length;
+
+			result.push(this.notes[index]);
+		}
+
+		return result;
+	}
+
+	private refineAlteratedNotes(modifiedRange: Array<string>) {
+		return modifiedRange.map(note => {
+			if (this.noteIsSameLetterAsNextOne(note, modifiedRange)) {
+				return note.substring(0, note.indexOf("/"));
+			} else if (note.includes("/")) {
+				return note.substring(note.length - 2, note.length);
+			}
+
+			return note;
+		})
+	}
+
+	private noteIsSameLetterAsNextOne(note: string, modifiedRange: Array<string>) {
+		return note.includes("/")
+			&& note.substring(
+				note.length - 2, note.length).includes(
+					modifiedRange[modifiedRange.findIndex(subnote => subnote === note) + 1][0]
+			);
 	}
 }
