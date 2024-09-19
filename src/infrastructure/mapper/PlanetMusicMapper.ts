@@ -6,9 +6,9 @@ import {MusicRange} from "../../domain/entity/MusicRange.js";
 export class PlanetMusicMapper {
 
   public mapToModel(planet: Planet): PlanetMusic {
-    let tempo = this.calculateTempo(planet.revolutionSpeedInDays);
-    let synthToUse = this.calculateSynthToUse(planet.mass.exponent);
-    let musicRange = this.calculateMusicRange(planet.mass.value);
+    const tempo = this.calculateTempo(planet.revolutionSpeedInDays);
+    const synthToUse = this.calculateSynthToUse(planet.mass.exponent);
+    const musicRange = this.calculateMusicRange(planet.mass.value);
     return new PlanetMusic(tempo, musicRange, synthToUse);
   }
 
@@ -19,7 +19,7 @@ export class PlanetMusicMapper {
     const earthRevolutionSpeedInDays = 365;
 
     // Utilisation d'un facteur logarithmique pour maintenir une échelle musicale
-    let tempoInBpm = minBPM + (Math.log(revolutionSpeedInDays) / Math.log(earthRevolutionSpeedInDays)) * (maxBPM - minBPM);
+    const tempoInBpm = minBPM + (Math.log(revolutionSpeedInDays) / Math.log(earthRevolutionSpeedInDays)) * (maxBPM - minBPM);
 
     // Limiter le BPM pour qu'il reste entre 90 et 240 BPM
     return Math.min(Math.max(Math.round(tempoInBpm), minBPM), maxBPM);
