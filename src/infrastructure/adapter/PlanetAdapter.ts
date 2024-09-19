@@ -1,19 +1,21 @@
 import {PlanetDao} from "../dao/PlanetDao.js";
 import {PlanetPort} from "../../domain/port/PlanetPort.js";
 import {PlanetMusic} from "../../domain/entity/PlanetMusic.js";
-import {Synth} from "../../domain/entity/Synth.js";
+import {PlanetMusicMapper} from "../mapper/PlanetMusicMapper.js";
 
 export class PlanetAdapter implements PlanetPort {
 
 	private planetDao: PlanetDao;
+	private planetMusicMapper: PlanetMusicMapper;
 
-	public constructor(planetDao: PlanetDao) {
+	public constructor(planetDao: PlanetDao, planetMusicMapper: PlanetMusicMapper) {
 		this.planetDao = planetDao;
+		this.planetMusicMapper = planetMusicMapper;
 	}
 
 	public async getPlanetMusic(planetName: string): Promise<PlanetMusic> {
 		const planet = await this.planetDao.getPlanetByName(planetName);
-		return new PlanetMusic(2, ["",""], Synth.SimpleSynth);
+		return this.planetMusicMapper.mapToModel(planet)
 	}
 
 }

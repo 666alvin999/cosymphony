@@ -5,6 +5,7 @@ import {GetPlanetMusic} from "../../domain/usecase/GetPlanetMusic.js";
 import {PlanetMusicViewModel} from "../dto/out/PlanetMusicViewModel.js";
 import {PlanetAdapter} from "../../infrastructure/adapter/PlanetAdapter.js";
 import {Planet} from "../../infrastructure/dto/Planet.js";
+import {PlanetMusicMapper} from "../../infrastructure/mapper/PlanetMusicMapper.js";
 
 export class SpaceController {
 
@@ -12,7 +13,7 @@ export class SpaceController {
 	private planetMusicPresenter: PlanetMusicPresenter;
 
 	constructor() {
-		const planetPort = new PlanetAdapter(new PlanetDao());
+		const planetPort = new PlanetAdapter(new PlanetDao(), new PlanetMusicMapper());
 
 		this.planetMusicPresenter = new PlanetMusicPresenter();
 		this.getPlanetMusic = new GetPlanetMusic<PlanetMusicViewModel>(planetPort);

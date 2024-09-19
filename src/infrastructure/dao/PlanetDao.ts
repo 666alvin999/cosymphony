@@ -58,7 +58,7 @@ export class PlanetDao {
 
 			this.savePlanet(planet);
 
-			return planetData;
+			return planet;
 		} catch (e) {
 			return ActionResult.ActionFailed(e.message);
 		}
