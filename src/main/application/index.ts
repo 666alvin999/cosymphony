@@ -2,6 +2,7 @@ import express, {Express} from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import {spaceRouter} from "./router/space.route.js";
+import {weatherRouter} from "./router/weather.route";
 
 
 dotenv.config();
@@ -19,6 +20,7 @@ try {
 	console.log("[SERVER] Mongo DB connection established");
 
 	app.use("/space", spaceRouter)
+	app.use("/weather", weatherRouter)
 } catch (e: any) {
 	console.log(e.message);
 }
