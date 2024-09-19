@@ -1,4 +1,5 @@
 export const MusicRange = {
+
   C: {
     musicRange: ["C", "D", "E", "F", "G", "A", "B"],
     interval: [0, 1.42]
@@ -27,4 +28,5 @@ export const MusicRange = {
     musicRange: ["B", "C", "D", "E", "F", "G", "A"],
     interval: [8.54, 10]
   }
+
 }
