@@ -29,8 +29,8 @@ export class SpaceController {
 		try {
 			const planet = new Planet({name: "mars", type: "test", mass: {value: 3, exponent: 3}, revolutionSpeedInDays: 3});
 			new PlanetDao().savePlanet(planet);
-		} catch(e) {
-			console.log(e);
+		} catch(e: any) {
+			console.log(e.message);
 		}
 
 		response.send("o");

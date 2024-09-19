@@ -7,7 +7,7 @@ export class PlanetDao {
 		try {
 			planet.save();
 			return ActionResult.ActionDone();
-		} catch (e) {
+		} catch (e: any) {
 			return ActionResult.ActionFailed(e.message);
 		}
 	}
@@ -15,7 +15,7 @@ export class PlanetDao {
 	public async getPlanetByName(planetName: string): Promise<Planet | ActionResult> {
 		try {
 			return await this.getPlanetByNameUsingDBOrAPI(planetName);
-		} catch(e) {
+		} catch(e: any) {
 			return ActionResult.ActionFailed(e.message);
 		}
 	}
@@ -29,7 +29,7 @@ export class PlanetDao {
 			}
 
 			return planet;
-		} catch(e) {
+		} catch(e: any) {
 			return ActionResult.ActionFailed(e.message);
 		}
 	}
@@ -37,7 +37,7 @@ export class PlanetDao {
 	private async getPlanetByNameUsingDB(planetName: string): Promise<Planet | ActionResult>  {
 		try {
 			return await Planet.findOne({name: planetName});
-		} catch(e) {
+		} catch(e: any) {
 			return ActionResult.ActionFailed(e.message);
 		}
 	}
@@ -59,7 +59,7 @@ export class PlanetDao {
 			this.savePlanet(planet);
 
 			return planet;
-		} catch (e) {
+		} catch (e: any) {
 			return ActionResult.ActionFailed(e.message);
 		}
 

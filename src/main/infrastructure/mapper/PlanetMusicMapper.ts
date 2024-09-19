@@ -49,7 +49,7 @@ export class PlanetMusicMapper {
 		return Object
 			.keys(MusicRange)
 			.filter(
-				key => mass >= MusicRange[key].interval[0] || mass < MusicRange[key].interval[1]
+				key => mass >= MusicRange[`${key}`].interval[0] || mass < MusicRange[`${key}`].interval[1]
 			);
 	}
 }
