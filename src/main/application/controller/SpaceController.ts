@@ -38,18 +38,9 @@ export class SpaceController {
 
   public async getWeatherJSON(request: Request, response: Response): Promise<void> {
     const weatherViewModel: WeatherViewModel = await this.getWeather.execute(request.params.lat, request.params.long, this.weatherPresenter);
+    console.log(weatherViewModel);
+    console.log(weatherViewModel.getWeather())
     response.status(200).json(weatherViewModel);
-  }
-
-  public savePlanet(request: Request, response: Response): void {
-    try {
-      const planet = new Planet({name: "mars", type: "test", mass: {value: 3, exponent: 3}, revolutionSpeedInDays: 3});
-      new PlanetDao().savePlanet(planet);
-    } catch (e: any) {
-      console.log(e.message);
-    }
-
-    response.send("o");
   }
 
 }

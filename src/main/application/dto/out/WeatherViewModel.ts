@@ -9,9 +9,13 @@ export class WeatherViewModel {
 
   public constructor(tempo: number, weather: WeatherInfo, rh: number, clouds: number) {
     this.temp = tempo;
-    this.weather = WeatherInfo;
+    this.weather = weather;
     this.rh = rh;
     this.clouds = clouds;
+  }
+
+  public getWeather() {
+    return this.weather;
   }
 
 }
