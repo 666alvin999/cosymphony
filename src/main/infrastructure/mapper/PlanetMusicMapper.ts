@@ -96,12 +96,7 @@ export class PlanetMusicMapper {
 
 	private refineAlteratedNotes(modifiedRange: Array<string>) {
 		return modifiedRange.map(note => {
-			if (note.includes("/")
-				&& note.substring(
-					note.length - 2, note.length).includes(
-					modifiedRange[modifiedRange.findIndex(subnote => subnote === note) + 1][0]
-				)
-			) {
+			if (this.noteIsSameLetterAsNextOne(note, modifiedRange)) {
 				return note.substring(0, note.indexOf("/"));
 			} else if (note.includes("/")) {
 				return note.substring(note.length - 2, note.length);
@@ -109,5 +104,13 @@ export class PlanetMusicMapper {
 
 			return note;
 		})
+	}
+
+	private noteIsSameLetterAsNextOne(note: string, modifiedRange: Array<string>) {
+		return note.includes("/")
+			&& note.substring(
+				note.length - 2, note.length).includes(
+					modifiedRange[modifiedRange.findIndex(subnote => subnote === note) + 1][0]
+			);
 	}
 }
