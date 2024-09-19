@@ -8,8 +8,4 @@ spaceRouter.get('/get/:planet', (req, res) => {
 	spaceController.getPlanetMusicJSON(req, res)
 });
 
-spaceRouter.get('/get/:lat/:long', (req, res) => {
-	spaceController.getWeatherJSON(req, res)
-});
-
 export {spaceRouter};

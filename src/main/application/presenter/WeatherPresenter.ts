@@ -6,10 +6,7 @@ export class WeatherPresenter implements WeatherPresentationPort<WeatherViewMode
 
 	public present(weather: Weather): WeatherViewModel {
 		return new WeatherViewModel(
-			weather.getTemp(),
 			weather.getWeather(),
-			weather.getRh(),
-			weather.getClouds()
 		);
 	}
 

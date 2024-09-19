@@ -2,32 +2,35 @@ import {WeatherInfo} from "../../infrastructure/dto/WeatherDto";
 
 export class Weather {
 
-	private readonly temp: number;
 	private readonly weather: WeatherInfo;
-	private readonly rh: number;
-	private readonly clouds: number;
 
 	public constructor(temp: number, weather: WeatherInfo, rh: number, clouds: number) {
-		this.temp = temp;
 		this.weather = weather;
-		this.rh = rh;
-		this.clouds = clouds;
 	}
 
-	public getTemp(): number {
-		return this.temp;
-	}
+	public getWeather(): string {
+		const code = this.weather.code;
 
-	public getWeather(): WeatherInfo {
-		return this.weather;
-	}
+		if (code >= 200 && code < 300) {
+			return "BitCrusher";
+		}
+		else if (code >= 300 && code < 400) {
+			return "Freeverb";
+		}
+		else if (code >= 500 && code < 600) {
+			return "Vibrato";
+		}
+		else if (code >= 600 && code < 700) {
+			return "Chebyshev";
+		}
+		else if (code >= 700 && code < 800) {
+			return "JCReverb";
+		}
+		else if (code >= 800) {
+			return "Distortion";
+		}
 
-	public getRh(): number {
-		return this.rh;
-	}
-
-	public getClouds(): number {
-		return this.clouds;
+		return "No effect";
 	}
 
 }
