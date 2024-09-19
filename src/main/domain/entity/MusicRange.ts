@@ -28,4 +28,5 @@ export const MusicRange = {
 		musicRange: ["B", "C", "D", "E", "F", "G", "A"],
 		interval: [8.54, 10]
 	}
+
 };
