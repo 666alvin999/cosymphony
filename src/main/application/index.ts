@@ -19,6 +19,6 @@ try {
 	console.log("[SERVER] Mongo DB connection established");
 
 	app.use("/space", spaceRouter)
-} catch (e) {
-	console.log(e);
+} catch (e: any) {
+	console.log(e.message);
 }

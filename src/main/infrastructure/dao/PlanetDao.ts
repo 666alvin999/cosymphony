@@ -7,7 +7,7 @@ export class PlanetDao {
 		try {
 			planet.save();
 			return ActionResult.ActionDone();
-		} catch (e) {
+		} catch (e: any) {
 			return ActionResult.ActionFailed(e.message);
 		}
 	}
@@ -15,7 +15,7 @@ export class PlanetDao {
 	public async getPlanetByName(planetName: string): Promise<Planet | ActionResult> {
 		try {
 			return await this.getPlanetByNameUsingDBOrAPI(planetName);
-		} catch(e) {
+		} catch(e: any) {
 			return ActionResult.ActionFailed(e.message);
 		}
 	}
@@ -29,15 +29,15 @@ export class PlanetDao {
 			}
 
 			return planet;
-		} catch(e) {
+		} catch(e: any) {
 			return ActionResult.ActionFailed(e.message);
 		}
 	}
 
 	private async getPlanetByNameUsingDB(planetName: string): Promise<Planet | ActionResult>  {
 		try {
-			return await Planet.findOne({name: planetName});
-		} catch(e) {
+			return await Planet.findOne({id: planetName}).exec();
+		} catch(e: any) {
 			return ActionResult.ActionFailed(e.message);
 		}
 	}
@@ -47,6 +47,7 @@ export class PlanetDao {
 			const response = await fetch(`https://api.le-systeme-solaire.net/rest/bodies/${planetName}`);
 			const planetData = await response.json();
 			const planet: Planet = new Planet({
+				id: planetData.id,
 				name: planetData.name,
 				type: planetData.bodyType,
 				mass: {
@@ -59,7 +60,7 @@ export class PlanetDao {
 			this.savePlanet(planet);
 
 			return planet;
-		} catch (e) {
+		} catch (e: any) {
 			return ActionResult.ActionFailed(e.message);
 		}
 
