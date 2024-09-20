@@ -4,7 +4,7 @@ export class Weather {
 
 	private readonly weather: WeatherInfo;
 
-	public constructor(temp: number, weather: WeatherInfo, rh: number, clouds: number) {
+	public constructor(weather: WeatherInfo) {
 		this.weather = weather;
 	}
 

@@ -9,7 +9,7 @@ import {ActionResult} from "../../domain/entity/ActionResult";
 export class WeatherMapper {
 
 	public mapToModel(weatherDto: WeatherDto): Weather {
-		return new Weather(weatherDto.temp, weatherDto.weather, weatherDto.rh, weatherDto.clouds);
+		return new Weather(weatherDto.weather);
 	}
 
 }
