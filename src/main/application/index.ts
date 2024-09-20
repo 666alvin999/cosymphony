@@ -24,3 +24,5 @@ try {
 } catch (e: any) {
 	console.log(e.message);
 }
+
+export default app;
