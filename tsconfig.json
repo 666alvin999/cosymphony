@@ -3,7 +3,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "target": "es2023",
@@ -28,6 +28,6 @@
     "noImplicitOverride": true,                       /* Ensure overriding members in derived classes are marked with an override modifier. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["src/**/*", "api/*.ts"],
+  "include": ["api/*.ts"],
   "exclude": ["node_modules", "**/*.test.ts"]
 }
