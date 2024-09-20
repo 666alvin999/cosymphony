@@ -1,11 +1,11 @@
 import {Request, Response} from "express";
-import {GetWeather} from "../../domain/usecase/GetWeather";
-import {WeatherViewModel} from "../dto/out/WeatherViewModel";
-import {WeatherAdapter} from "../../infrastructure/adapter/WeatherAdapter";
-import {WeatherDao} from "../../infrastructure/dao/WeatherDao";
-import {WeatherMapper} from "../../infrastructure/mapper/WeatherMapper";
-import {WeatherPresenter} from "../presenter/WeatherPresenter";
-import {ActionResult} from "../../domain/entity/ActionResult";
+import {GetWeather} from "../../domain/usecase/GetWeather.js";
+import {WeatherViewModel} from "../dto/out/WeatherViewModel.js";
+import {WeatherAdapter} from "../../infrastructure/adapter/WeatherAdapter.js";
+import {WeatherDao} from "../../infrastructure/dao/WeatherDao.js";
+import {WeatherMapper} from "../../infrastructure/mapper/WeatherMapper.js";
+import {WeatherPresenter} from "../presenter/WeatherPresenter.js";
+import {ActionResult} from "../../domain/entity/ActionResult.js";
 
 export class WeatherController {
 

@@ -2,8 +2,7 @@ import {PlanetDao} from "../dao/PlanetDao.js";
 import {PlanetPort} from "../../domain/port/PlanetPort.js";
 import {PlanetMusic} from "../../domain/entity/PlanetMusic.js";
 import {PlanetMusicMapper} from "../mapper/PlanetMusicMapper.js";
-import type {IPlanet} from "../dto/IPlanet";
-import {ActionResult} from "../../domain/entity/ActionResult";
+import {ActionResult} from "../../domain/entity/ActionResult.js";
 
 export class PlanetAdapter implements PlanetPort {
 

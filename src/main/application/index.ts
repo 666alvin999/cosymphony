@@ -2,7 +2,7 @@ import express, {Express} from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import {spaceRouter} from "./router/space.route.js";
-import {weatherRouter} from "./router/weather.route";
+import {weatherRouter} from "./router/weather.route.js";
 
 
 dotenv.config();

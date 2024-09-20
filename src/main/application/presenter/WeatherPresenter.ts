@@ -1,6 +1,6 @@
-import {WeatherPresentationPort} from "../../domain/port/WeatherPresentationPort";
-import {WeatherViewModel} from "../dto/out/WeatherViewModel";
-import {Weather} from "../../domain/entity/Weather";
+import {WeatherPresentationPort} from "../../domain/port/WeatherPresentationPort.js";
+import {WeatherViewModel} from "../dto/out/WeatherViewModel.js";
+import {Weather} from "../../domain/entity/Weather.js";
 
 export class WeatherPresenter implements WeatherPresentationPort<WeatherViewModel> {
 

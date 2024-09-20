@@ -1,5 +1,5 @@
-import {Weather} from "../entity/Weather";
-import {ActionResult} from "../entity/ActionResult";
+import {Weather} from "../entity/Weather.js";
+import {ActionResult} from "../entity/ActionResult.js";
 
 export interface WeatherPort {
 

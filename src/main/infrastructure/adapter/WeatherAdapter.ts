@@ -1,9 +1,9 @@
-import {Weather} from "../../domain/entity/Weather";
-import {WeatherDao} from "../dao/WeatherDao";
-import {WeatherMapper} from "../mapper/WeatherMapper";
-import {WeatherPort} from "../../domain/port/WeatherPort";
-import {WeatherDto} from "../dto/WeatherDto";
-import {ActionResult} from "../../domain/entity/ActionResult";
+import {Weather} from "../../domain/entity/Weather.js";
+import {WeatherDao} from "../dao/WeatherDao.js";
+import {WeatherMapper} from "../mapper/WeatherMapper.js";
+import {WeatherPort} from "../../domain/port/WeatherPort.js";
+import {WeatherDto} from "../dto/WeatherDto.js";
+import {ActionResult} from "../../domain/entity/ActionResult.js";
 
 export class WeatherAdapter implements WeatherPort {
 

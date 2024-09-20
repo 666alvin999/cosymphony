@@ -1,5 +1,5 @@
 import {ActionResult} from "../../domain/entity/ActionResult.js";
-import {WeatherDto, WeatherInfo} from "../dto/WeatherDto";
+import {WeatherDto, WeatherInfo} from "../dto/WeatherDto.js";
 
 export class WeatherDao {
 

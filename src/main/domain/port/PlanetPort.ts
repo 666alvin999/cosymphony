@@ -1,5 +1,5 @@
 import {PlanetMusic} from "../entity/PlanetMusic.js";
-import {ActionResult} from "../entity/ActionResult";
+import {ActionResult} from "../entity/ActionResult.js";
 
 export interface PlanetPort {
 

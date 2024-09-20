@@ -1,7 +1,7 @@
 import {PlanetPort} from "../port/PlanetPort.js";
 import {PlanetMusicPresentationPort} from "../port/PlanetMusicPresentationPort.js";
-import {ActionResult} from "../entity/ActionResult";
-import {PlanetMusic} from "../entity/PlanetMusic";
+import {ActionResult} from "../entity/ActionResult.js";
+import {PlanetMusic} from "../entity/PlanetMusic.js";
 
 export class GetPlanetMusic<T> {
 

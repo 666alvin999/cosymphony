@@ -1,7 +1,7 @@
-import {WeatherPort} from "../port/WeatherPort";
-import {WeatherPresentationPort} from "../port/WeatherPresentationPort";
-import {Weather} from "../entity/Weather";
-import {ActionResult} from "../entity/ActionResult";
+import {WeatherPort} from "../port/WeatherPort.js";
+import {WeatherPresentationPort} from "../port/WeatherPresentationPort.js";
+import {Weather} from "../entity/Weather.js";
+import {ActionResult} from "../entity/ActionResult.js";
 
 export class GetWeather<T> {
 

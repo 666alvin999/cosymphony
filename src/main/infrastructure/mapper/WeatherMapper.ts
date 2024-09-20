@@ -1,5 +1,5 @@
-import {Weather} from "../../domain/entity/Weather";
-import {WeatherDto} from "../dto/WeatherDto";
+import {Weather} from "../../domain/entity/Weather.js";
+import {WeatherDto} from "../dto/WeatherDto.js";
 
 export class WeatherMapper {
 
