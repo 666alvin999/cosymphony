@@ -4,7 +4,7 @@ import {WeatherController} from "../controller/WeatherController";
 const weatherRouter = express.Router();
 const weatherController = new WeatherController();
 weatherRouter.get('/get/:lat/:long', (req, res) => {
-  weatherController.getWeatherJSON(req, res)
+	weatherController.getWeatherJSON(req, res)
 });
 
 export {weatherRouter};

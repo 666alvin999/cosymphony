@@ -1,0 +1,1 @@
+export type MusicKey = 'C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B';

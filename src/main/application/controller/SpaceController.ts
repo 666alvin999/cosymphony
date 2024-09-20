@@ -8,20 +8,25 @@ import {PlanetMusicMapper} from "../../infrastructure/mapper/PlanetMusicMapper.j
 
 export class SpaceController {
 
-  private getPlanetMusic: GetPlanetMusic<PlanetMusicViewModel>;
-  private readonly planetMusicPresenter: PlanetMusicPresenter;
+	private getPlanetMusic: GetPlanetMusic<PlanetMusicViewModel>;
+	private readonly planetMusicPresenter: PlanetMusicPresenter;
 
-  constructor() {
-    const planetPort = new PlanetAdapter(new PlanetDao(), new PlanetMusicMapper());
+	constructor() {
+		const planetPort = new PlanetAdapter(new PlanetDao(), new PlanetMusicMapper());
 
-    this.planetMusicPresenter = new PlanetMusicPresenter();
-    this.getPlanetMusic = new GetPlanetMusic<PlanetMusicViewModel>(planetPort);
-  }
+		this.planetMusicPresenter = new PlanetMusicPresenter();
+		this.getPlanetMusic = new GetPlanetMusic<PlanetMusicViewModel>(planetPort);
+	}
 
-  public async getPlanetMusicJSON(request: Request, response: Response): Promise<void> {
+	public async getPlanetMusicJSON(request: Request, response: Response): Promise<void> {
 
-    const planetMusicViewModel: PlanetMusicViewModel = await this.getPlanetMusic.execute(request.params.planet, this.planetMusicPresenter);
-    response.status(200).json(planetMusicViewModel);
-  }
+		const planetMusicViewModel = await this.getPlanetMusic.execute(request.params.planet, this.planetMusicPresenter);
+
+		if (planetMusicViewModel instanceof PlanetMusicViewModel) {
+			response.status(200).json(planetMusicViewModel);
+		} else {
+			response.status(500).json(planetMusicViewModel);
+		}
+	}
 
 }

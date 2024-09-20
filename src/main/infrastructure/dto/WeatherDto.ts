@@ -38,7 +38,8 @@ export class WeatherDto {
 		public readonly pod: string,
 		public readonly precip: number,
 		public readonly snow: number
-	) {}
+	) {
+	}
 }
 
 export class WeatherInfo {
@@ -46,5 +47,6 @@ export class WeatherInfo {
 		public icon: string,
 		public code: number,
 		public description: string,
-	) {}
+	) {
+	}
 }

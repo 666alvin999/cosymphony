@@ -1,5 +1,7 @@
 // Remplacer l'enum par un objet constant
-export const MusicRange = {
+import {MusicKey} from "./MusicKey";
+
+export const MusicRange: Record<MusicKey, { key: string; interval: number[] }> = {
 	C: {
 		key: "C",
 		interval: [0, 1.42]

@@ -13,20 +13,15 @@ export class Weather {
 
 		if (code >= 200 && code < 300) {
 			return "BitCrusher";
-		}
-		else if (code >= 300 && code < 400) {
+		} else if (code >= 300 && code < 400) {
 			return "Freeverb";
-		}
-		else if (code >= 500 && code < 600) {
+		} else if (code >= 500 && code < 600) {
 			return "Vibrato";
-		}
-		else if (code >= 600 && code < 700) {
+		} else if (code >= 600 && code < 700) {
 			return "Chebyshev";
-		}
-		else if (code >= 700 && code < 800) {
+		} else if (code >= 700 && code < 800) {
 			return "JCReverb";
-		}
-		else if (code >= 800) {
+		} else if (code >= 800) {
 			return "Distortion";
 		}
 

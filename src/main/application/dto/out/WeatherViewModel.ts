@@ -1,9 +1,9 @@
 export class WeatherViewModel {
 
-  private effect: string;
+	private effect: string;
 
-  public constructor(effect: string) {
-    this.effect = effect;
-  }
+	public constructor(effect: string) {
+		this.effect = effect;
+	}
 
 }

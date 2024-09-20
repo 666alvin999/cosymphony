@@ -2,6 +2,7 @@ import {PlanetMusic} from "../../domain/entity/PlanetMusic.js";
 import {Planet} from "../dto/Planet.js";
 import {Synth} from "../../domain/entity/Synth.js";
 import {MusicRange} from "../../domain/entity/MusicRange.js";
+import {MusicKey} from "../../domain/entity/MusicKey";
 
 export class PlanetMusicMapper {
 
@@ -9,7 +10,13 @@ export class PlanetMusicMapper {
 	private readonly MAX_BPM = 240;
 	private readonly notes = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B']
 
-	public mapToDomain(planet: Planet): PlanetMusic {
+	public mapToDomain(planet: {
+		id: string,
+		name: string,
+		type: string,
+		mass: { value: number, exponent: number },
+		revolutionSpeedInDays: number
+	}): PlanetMusic {
 		const tempo = this.calculateTempo(planet.revolutionSpeedInDays);
 		const synthToUse = this.calculateSynthToUse(planet.mass.exponent);
 		const musicRange = this.calculateMusicRange(planet.mass.value, planet.type);
@@ -47,7 +54,7 @@ export class PlanetMusicMapper {
 	private calculateMusicRange(mass: number, type: string): Array<string> {
 		// return the music range based on the mass
 		for (const key in MusicRange) {
-			const range = MusicRange[key];
+			const range = MusicRange[key as MusicKey];
 
 			if (mass >= range.interval[0] && mass < range.interval[1]) {
 				return this.modifyMusicRangeBasedOnType(range, type);
@@ -57,7 +64,10 @@ export class PlanetMusicMapper {
 		return this.modifyMusicRangeBasedOnType(MusicRange.B, type);
 	}
 
-	private modifyMusicRangeBasedOnType(musicRange: MusicRange, type: string): Array<string> {
+	private modifyMusicRangeBasedOnType(musicRange: {
+		key: string,
+		interval: Array<number>
+	}, type: string): Array<string> {
 		let modifiedRange;
 		if (type === "Moon" || type === "Planet") {
 			modifiedRange = this.makeMajorMusicRange(musicRange);
@@ -69,17 +79,20 @@ export class PlanetMusicMapper {
 		return this.refineAlteratedNotes(modifiedRange);
 	}
 
-	private makeMajorMusicRange(musicRange: MusicRange): Array<string> {
+	private makeMajorMusicRange(musicRange: { key: string, interval: Array<number> }): Array<string> {
 		const majorScalePattern = ["W", "W", "H", "W", "W", "W", "H"];
 		return this.makeMusicRangeFollowPattern(musicRange, majorScalePattern);
 	}
 
-	private makeMinorMusicRange(musicRange: MusicRange): Array<string> {
+	private makeMinorMusicRange(musicRange: { key: string, interval: Array<number> }): Array<string> {
 		const minorScalePattern = ["W", "H", "W", "W", "H", "W", "W"];
 		return this.makeMusicRangeFollowPattern(musicRange, minorScalePattern);
 	}
 
-	private makeMusicRangeFollowPattern(musicRange: MusicRange, minorScalePattern: string[]) {
+	private makeMusicRangeFollowPattern(musicRange: {
+		key: string,
+		interval: Array<number>
+	}, minorScalePattern: string[]) {
 		const result = new Array<string>()
 
 		let index: number = this.notes.findIndex(note => note == musicRange.key);
@@ -110,7 +123,7 @@ export class PlanetMusicMapper {
 		return note.includes("/")
 			&& note.substring(
 				note.length - 2, note.length).includes(
-					modifiedRange[modifiedRange.findIndex(subnote => subnote === note) + 1][0]
+				modifiedRange[modifiedRange.findIndex(subnote => subnote === note) + 1][0]
 			);
 	}
 }
